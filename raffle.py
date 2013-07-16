@@ -1,10 +1,8 @@
 
 
-
 from optparse import OptionParser
 import sys
 import random
-import json
 import os
 from urllib.request import urlopen
 import lxml.html
@@ -57,22 +55,6 @@ class Raffle:
             #return name, self.database[name]
             #return '{} was nearest with {}'.format(name, self.database[name])
             return '{} won the raffle'.format(name)
-        
-    def add(self, name, num):
-        try:
-            self.database[name] #does name exist
-        except KeyError:
-            for k,v in self.database.items(): #does value exist
-                if num == v:
-                    print('{} already exists with number {}'.format(k,v))
-                    return False
-
-            self.database.update({name:num})
-            self.db.save(self.database)
-            return True
-        print('{} already exists with number {}'.format(name, self.database[name]))
-        return False
-            
 
 app = Raffle()
 print('total: {} \n{}\n'.format(len(app.database.keys()), app.database))
